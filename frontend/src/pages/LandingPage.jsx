@@ -8,7 +8,6 @@ import {
   Shield,
   Zap,
   ArrowRight,
-  Star,
   Globe,
   Heart,
 } from 'lucide-react';
@@ -58,26 +57,26 @@ const LandingPage = () => {
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Navbar */}
-      <nav className="relative z-20 flex items-center justify-between px-6 lg:px-12 py-4">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center shadow-lg shadow-primary-500/30">
-            <Bookmark className="w-5 h-5 text-white" />
+      <nav className="relative z-20 flex items-center justify-between px-6 lg:px-12 py-4 border-b border-border/60 bg-background/80 backdrop-blur-sm">
+        <Link to="/" className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground shadow-sm">
+            <Bookmark className="w-4 h-4" />
           </div>
-          <span className="text-2xl font-bold gradient-text">Stashly</span>
+          <span className="text-xl font-bold tracking-tight text-foreground font-sans">Stashly</span>
         </Link>
         <div className="flex items-center gap-3">
           <ThemeToggle />
           {isAuthenticated ? (
-            <Link to="/dashboard" className="btn-primary text-sm">
-              Dashboard <ArrowRight className="w-4 h-4 ml-1" />
+            <Link to="/dashboard" className="btn-primary !h-9 text-xs font-semibold rounded-lg gap-1.5">
+              Dashboard <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           ) : (
             <>
-              <Link to="/login" className="btn-ghost text-sm">Log In</Link>
-              <Link to="/register" className="btn-primary text-sm">
-                Get Started <ArrowRight className="w-4 h-4 ml-1" />
+              <Link to="/login" className="btn-ghost !h-9 text-xs font-semibold rounded-lg">Log In</Link>
+              <Link to="/register" className="btn-primary !h-9 text-xs font-semibold rounded-lg gap-1.5">
+                Get Started <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </>
           )}
@@ -85,88 +84,132 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero */}
-      <section className="relative px-6 lg:px-12 pt-16 pb-24 lg:pt-24 lg:pb-32">
-        {/* Background elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-br from-primary-500/20 via-secondary-500/10 to-transparent rounded-full blur-3xl" />
-        <div className="absolute top-40 right-10 w-16 h-16 bg-primary-500/20 rounded-2xl rotate-12 animate-float" />
-        <div className="absolute top-60 left-10 w-12 h-12 bg-secondary-500/20 rounded-full animate-float" style={{ animationDelay: '2s' }} />
-
+      <section className="relative px-6 lg:px-12 pt-16 pb-20 lg:pt-24 lg:pb-28">
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary text-sm font-medium mb-6">
-              <Star className="w-4 h-4 fill-current" />
-              Your Smart Bookmark Manager
-            </div>
 
-            <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6 leading-tight">
-              Save, Organize &<br />
-              <span className="gradient-text">Discover Your Links</span>
+            {/* Headline with Outfit (sans) + Merriweather (serif italic) pairing */}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6 max-w-4xl mx-auto leading-[1.12]">
+              Every link that matters, <br className="hidden sm:inline" />
+              <span className="font-serif italic font-normal text-primary">curated</span> in one quiet place.
             </h1>
 
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-              Stop losing important links. Stashly helps you save, organize, and find your bookmarks in seconds with powerful search, collections, and analytics.
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed font-sans">
+              Stop losing important resources across tabs and chats. Stashly organizes your bookmarks with instant search, custom collections, and reading analytics.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to={isAuthenticated ? '/dashboard' : '/register'}
-                className="btn-primary !px-8 !py-3.5 text-base shadow-xl shadow-primary-500/30"
+                className="btn-primary !h-11 !px-6 text-sm font-semibold rounded-lg shadow-sm gap-2 w-full sm:w-auto"
               >
-                <Zap className="w-5 h-5 mr-2" />
+                <Zap className="w-4 h-4" />
                 Start Saving — It's Free
               </Link>
-              <a href="#features" className="btn-secondary !px-8 !py-3.5 text-base">
-                <Globe className="w-5 h-5 mr-2" />
+              <a
+                href="#features"
+                className="btn-outline !h-11 !px-6 text-sm font-semibold rounded-lg gap-2 w-full sm:w-auto"
+              >
+                <Globe className="w-4 h-4 text-muted-foreground" />
                 Explore Features
               </a>
             </div>
+
+            {/* Micro spec items in Fira Code */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-mono text-muted-foreground mt-8">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1 h-1 rounded-full bg-primary" /> Auto metadata & favicon
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1 h-1 rounded-full bg-primary" /> Lightning full-text search
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1 h-1 rounded-full bg-primary" /> 100% private & secure
+              </span>
+            </div>
           </motion.div>
 
-          {/* Floating cards */}
+          {/* Clean App Mockup Window (No ambient blur, crisp borders) */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-16 relative"
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="mt-14 max-w-3xl mx-auto text-left"
           >
-            <div className="glass-card p-6 max-w-2xl mx-auto">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-destructive" />
-                  <div className="w-3 h-3 rounded-full bg-chart-4" />
-                  <div className="w-3 h-3 rounded-full bg-primary" />
+            <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden">
+              {/* Window title bar */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/40">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                  </div>
+                  <span className="text-xs font-mono text-muted-foreground ml-2 hidden sm:inline">stashly.app/my-library</span>
                 </div>
-                <div className="flex-1 h-8 bg-muted border border-border rounded-lg flex items-center px-3">
-                  <Search className="w-3.5 h-3.5 text-muted-foreground mr-2" />
-                  <span className="text-xs text-muted-foreground">Search your bookmarks...</span>
+                <div className="flex items-center gap-2">
+                  <div className="h-7 px-2.5 bg-input border border-border rounded-md flex items-center gap-2 text-xs text-muted-foreground">
+                    <Search className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-[11px] font-sans">Search bookmarks...</span>
+                    <kbd className="font-mono text-[10px] bg-card px-1.5 py-0.5 rounded border border-border text-muted-foreground ml-1">⌘K</kbd>
+                  </div>
+                  <div className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-md">
+                    <Bookmark className="w-3 h-3" /> New
+                  </div>
                 </div>
               </div>
-              <div className="space-y-3">
+
+              {/* Mock bookmark items */}
+              <div className="p-3 sm:p-4 space-y-2.5">
                 {[
-                  { title: 'React Documentation', url: 'react.dev', tag: 'Frontend' },
-                  { title: 'Tailwind CSS', url: 'tailwindcss.com', tag: 'Design' },
-                  { title: 'Node.js Best Practices', url: 'github.com', tag: 'Backend' },
+                  {
+                    title: 'React 19 Official Documentation & Actions',
+                    url: 'react.dev/blog/react-19',
+                    tag: 'Frontend',
+                    time: 'Saved 2h ago',
+                  },
+                  {
+                    title: 'Tailwind CSS v4 Engine Deep Dive',
+                    url: 'tailwindcss.com/docs/v4-beta',
+                    tag: 'Design',
+                    time: 'Saved yesterday',
+                  },
+                  {
+                    title: 'Distributed Systems & Data Architecture Patterns',
+                    url: 'martinfowler.com/articles/patterns',
+                    tag: 'Architecture',
+                    time: 'Saved 3d ago',
+                  },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -15 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + i * 0.15 }}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-muted/60 border border-border group"
+                    transition={{ delay: 0.4 + i * 0.1 }}
+                    className="flex items-center justify-between gap-3 p-3 rounded-lg bg-input/40 hover:bg-input border border-border/60 hover:border-border transition-all group"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center flex-shrink-0">
-                      <Bookmark className="w-4 h-4 text-white" />
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-7 h-7 rounded-md bg-card border border-border flex items-center justify-center flex-shrink-0 text-primary">
+                        <Bookmark className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs sm:text-sm font-semibold text-card-foreground truncate group-hover:text-primary transition-colors font-sans">
+                          {item.title}
+                        </p>
+                        <p className="text-[11px] font-mono text-muted-foreground truncate">{item.url}</p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0 text-left">
-                      <p className="text-sm font-medium text-card-foreground truncate">{item.title}</p>
-                      <p className="text-xs text-muted-foreground truncate">{item.url}</p>
+                    <div className="flex items-center gap-2.5 flex-shrink-0">
+                      <span className="tag-chip font-mono text-[10px] hidden sm:inline-flex">{item.tag}</span>
+                      <span className="text-[11px] font-mono text-muted-foreground hidden md:inline">{item.time}</span>
+                      <Heart className="w-3.5 h-3.5 text-muted-foreground group-hover:text-destructive transition-colors" />
                     </div>
-                    <span className="tag-chip text-[10px]">{item.tag}</span>
-                    <Heart className="w-4 h-4 text-muted-foreground group-hover:text-destructive transition-colors" />
                   </motion.div>
                 ))}
               </div>
@@ -184,10 +227,11 @@ const LandingPage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-4">
-              Everything You Need
+            <p className="font-mono text-xs uppercase tracking-wider text-primary font-semibold mb-2">Capabilities</p>
+            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground mb-4 font-sans">
+              Everything you need to stay <span className="font-serif italic font-normal text-primary">organized</span>.
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto font-sans">
               Powerful features to help you save, organize, and rediscover your important links.
             </p>
           </motion.div>
@@ -200,15 +244,15 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-6 hover:shadow-xl transition-all duration-300 group"
+                className="glass-card p-6 hover:shadow-md transition-all duration-300 group"
               >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className="w-6 h-6 text-white" />
+                <div className={`w-11 h-11 rounded-lg bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform duration-300`}>
+                  <feature.icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-card-foreground mb-2">
+                <h3 className="text-base font-semibold text-card-foreground mb-2 font-sans">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed font-sans">
                   {feature.desc}
                 </p>
               </motion.div>
@@ -225,22 +269,19 @@ const LandingPage = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          <div className="glass-card p-12 lg:p-16 relative overflow-hidden">
-            <div className="absolute inset-0 gradient-bg opacity-10" />
-            <div className="relative z-10">
-              <h2 className="text-3xl lg:text-4xl font-bold text-card-foreground mb-4">
-                Ready to Organize Your Links?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-                Join thousands of users who trust Stashly to manage their bookmarks efficiently.
-              </p>
-              <Link
-                to={isAuthenticated ? '/dashboard' : '/register'}
-                className="btn-primary !px-10 !py-4 text-base"
-              >
-                Get Started for Free <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
+          <div className="bg-card border border-border rounded-2xl p-10 lg:p-14 shadow-sm">
+            <h2 className="text-3xl lg:text-4xl font-bold text-card-foreground mb-4 font-sans">
+              Ready to organize your links with <span className="font-serif italic font-normal text-primary">clarity</span>?
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-xl mx-auto font-sans">
+              Join thousands of users who trust Stashly to manage their bookmarks efficiently.
+            </p>
+            <Link
+              to={isAuthenticated ? '/dashboard' : '/register'}
+              className="btn-primary !h-11 !px-8 text-sm font-semibold rounded-lg inline-flex items-center gap-2 shadow-sm"
+            >
+              Get Started for Free <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </motion.div>
       </section>
@@ -248,13 +289,13 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="px-6 lg:px-12 py-8 border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center shadow-sm">
-              <Bookmark className="w-3.5 h-3.5 text-white" />
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-primary-foreground shadow-sm">
+              <Bookmark className="w-3.5 h-3.5" />
             </div>
-            <span className="text-sm font-semibold gradient-text">Stashly</span>
+            <span className="text-sm font-semibold text-foreground font-sans">Stashly</span>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground font-sans">
             © {new Date().getFullYear()} Stashly. Built with ❤️
           </p>
         </div>

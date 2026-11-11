@@ -1,12 +1,13 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import { useBookmarks } from '../context/BookmarkContext';
+import {
+  AnimatedSidebarProvider,
+  AnimatedSidebarInset,
+} from '@/components/ui/animated-sidebar';
 
 const MainLayout = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
   const { searchBookmarks, fetchBookmarks } = useBookmarks();
 
   const handleSearch = (query) => {
@@ -18,28 +19,15 @@ const MainLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Sidebar
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-        collapsed={collapsed}
-        onToggleCollapse={() => setCollapsed(!collapsed)}
-      />
-
-      <div
-        className={`transition-all duration-300 ${
-          collapsed ? 'lg:ml-[72px]' : 'lg:ml-[260px]'
-        }`}
-      >
-        <Navbar
-          onMenuClick={() => setSidebarOpen(true)}
-          onSearch={handleSearch}
-        />
-        <main className="p-4 lg:p-8 max-w-7xl mx-auto">
+    <AnimatedSidebarProvider defaultOpen={true}>
+      <Sidebar />
+      <AnimatedSidebarInset className="min-h-screen bg-background text-foreground flex flex-col flex-1 min-w-0">
+        <Navbar onSearch={handleSearch} />
+        <main className="p-4 lg:p-8 max-w-7xl w-full mx-auto flex-1">
           <Outlet />
         </main>
-      </div>
-    </div>
+      </AnimatedSidebarInset>
+    </AnimatedSidebarProvider>
   );
 };
 

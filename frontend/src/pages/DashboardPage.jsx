@@ -6,7 +6,6 @@ import {
   Heart,
   FolderOpen,
   TrendingUp,
-  Plus,
   ExternalLink,
   Clock,
   BarChart3,
@@ -49,9 +48,6 @@ const DashboardPage = () => {
             Here's what's happening with your bookmarks.
           </p>
         </div>
-        <Link to="/bookmarks/new" className="btn-primary !h-9 text-xs font-semibold gap-1.5 rounded-lg">
-          <Plus className="w-4 h-4" /> Add Bookmark
-        </Link>
       </motion.div>
 
       {loading && !stats && <ServerWakeupNotice />}

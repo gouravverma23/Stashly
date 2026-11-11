@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Search, Menu, Plus } from 'lucide-react';
+import { Search, Plus, PanelLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import { AnimatedSidebarTrigger } from '@/components/ui/animated-sidebar';
 
-const Navbar = ({ onMenuClick, onSearch }) => {
+const Navbar = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
@@ -17,17 +18,17 @@ const Navbar = ({ onMenuClick, onSearch }) => {
   return (
     <header className="sticky top-0 z-20 bg-card/90 backdrop-blur-md border-b border-border text-card-foreground">
       <div className="flex items-center justify-between px-4 lg:px-8 h-14">
-        {/* Left: Menu + Search */}
-        <div className="flex items-center gap-3 flex-1">
-          <button
-            onClick={onMenuClick}
-            className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center hover:bg-muted text-muted-foreground transition-colors"
-            aria-label="Toggle menu"
+        {/* Left: Sidebar trigger + Search */}
+        <div className="flex items-center gap-2 flex-1">
+          <AnimatedSidebarTrigger
+            className="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            aria-label="Toggle sidebar (⌘B)"
+            title="Toggle sidebar (⌘B)"
           >
-            <Menu className="w-4 h-4" />
-          </button>
+            <PanelLeft className="w-4 h-4" />
+          </AnimatedSidebarTrigger>
 
-          <form onSubmit={handleSearch} className="relative flex-1 max-w-md">
+          <form onSubmit={handleSearch} className="relative flex-1 max-w-md ml-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               id="search-bookmarks"
