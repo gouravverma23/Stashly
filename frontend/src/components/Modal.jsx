@@ -19,23 +19,23 @@ const Modal = ({ isOpen, onClose, title, children, maxWidth = 'max-w-lg' }) => {
 
           {/* Modal Content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className={`relative w-full ${maxWidth} bg-card text-card-foreground rounded-2xl shadow-2xl border border-border overflow-hidden`}
+            className={`relative w-full ${maxWidth} bg-card text-card-foreground rounded-xl shadow-xl border border-border overflow-hidden`}
           >
             {/* Header */}
             {title && (
               <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-                <h3 className="text-lg font-semibold text-card-foreground">
+                <h3 className="text-base font-bold text-card-foreground">
                   {title}
                 </h3>
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                  className="w-7 h-7 rounded-md flex items-center justify-center hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
             )}

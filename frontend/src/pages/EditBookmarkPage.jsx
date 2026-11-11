@@ -93,9 +93,9 @@ const EditBookmarkPage = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="glass-card p-6 space-y-5">
+        <form onSubmit={handleSubmit} className="glass-card p-6 space-y-4">
           <div>
-            <label htmlFor="edit-url" className="block text-sm font-medium text-card-foreground mb-1.5">URL *</label>
+            <label htmlFor="edit-url" className="block text-xs font-semibold text-card-foreground mb-1.5">URL *</label>
             <div className="relative">
               <Link2 className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input id="edit-url" type="url" value={form.url} onChange={(e) => setForm({ ...form, url: e.target.value })} className="input-field !pl-10" required />
@@ -103,7 +103,7 @@ const EditBookmarkPage = () => {
           </div>
 
           <div>
-            <label htmlFor="edit-title" className="block text-sm font-medium text-card-foreground mb-1.5">Title *</label>
+            <label htmlFor="edit-title" className="block text-xs font-semibold text-card-foreground mb-1.5">Title *</label>
             <div className="relative">
               <Type className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input id="edit-title" type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="input-field !pl-10" required />
@@ -111,7 +111,7 @@ const EditBookmarkPage = () => {
           </div>
 
           <div>
-            <label htmlFor="edit-desc" className="block text-sm font-medium text-card-foreground mb-1.5">Description</label>
+            <label htmlFor="edit-desc" className="block text-xs font-semibold text-card-foreground mb-1.5">Description</label>
             <div className="relative">
               <FileText className="absolute left-3.5 top-3 w-4 h-4 text-muted-foreground" />
               <textarea id="edit-desc" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} className="input-field !pl-10 resize-none" />
@@ -120,14 +120,14 @@ const EditBookmarkPage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="edit-category" className="block text-sm font-medium text-card-foreground mb-1.5">Category</label>
+              <label htmlFor="edit-category" className="block text-xs font-semibold text-card-foreground mb-1.5">Category</label>
               <div className="relative">
                 <FolderOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input id="edit-category" type="text" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="input-field !pl-10" />
               </div>
             </div>
             <div>
-              <label htmlFor="edit-collection" className="block text-sm font-medium text-card-foreground mb-1.5">Collection</label>
+              <label htmlFor="edit-collection" className="block text-xs font-semibold text-card-foreground mb-1.5">Collection</label>
               <select id="edit-collection" value={form.collectionId} onChange={(e) => setForm({ ...form, collectionId: e.target.value })} className="input-field">
                 <option value="">None</option>
                 {collections.map((col) => (
@@ -138,15 +138,15 @@ const EditBookmarkPage = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-card-foreground mb-1.5">Tags</label>
+            <label className="block text-xs font-semibold text-card-foreground mb-1.5">Tags</label>
             <TagInput tags={form.tags} onChange={(tags) => setForm({ ...form, tags })} />
           </div>
 
           <div className="flex items-center gap-3 pt-2">
-            <button type="submit" disabled={loading} className="btn-primary flex-1">
+            <button type="submit" disabled={loading} className="btn-primary flex-1 !h-10 text-sm font-semibold rounded-lg">
               {loading ? 'Saving...' : 'Update Bookmark'}
             </button>
-            <button type="button" onClick={() => navigate(-1)} className="btn-secondary">Cancel</button>
+            <button type="button" onClick={() => navigate(-1)} className="btn-outline !h-10 text-sm font-semibold rounded-lg">Cancel</button>
           </div>
         </form>
       </motion.div>

@@ -9,7 +9,7 @@ const ThemeToggle = () => {
     <button
       id="theme-toggle"
       onClick={toggleTheme}
-      className="relative p-2 rounded-xl bg-muted border border-border hover:bg-border/50 transition-colors duration-200"
+      className="relative w-9 h-9 rounded-lg bg-input border border-border hover:bg-muted transition-colors flex items-center justify-center"
       aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <motion.div

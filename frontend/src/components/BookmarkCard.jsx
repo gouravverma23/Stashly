@@ -103,7 +103,7 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
           <div className="flex items-center gap-1">
             <button
               onClick={() => toggleFavorite(bookmark._id)}
-              className={`p-2 rounded-lg transition-all duration-200 ${
+              className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-150 ${
                 bookmark.isFavorite
                   ? 'text-destructive bg-destructive/10'
                   : 'text-muted-foreground hover:text-destructive hover:bg-muted'
@@ -114,7 +114,7 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
             </button>
             <button
               onClick={handleClick}
-              className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-150"
               title="Open link"
             >
               <ExternalLink className="w-4 h-4" />
@@ -123,14 +123,14 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
           <div className="flex items-center gap-1">
             <button
               onClick={() => navigate(`/bookmarks/edit/${bookmark._id}`)}
-              className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-150"
               title="Edit"
             >
               <Edit3 className="w-4 h-4" />
             </button>
             <button
               onClick={() => onDelete(bookmark._id)}
-              className="p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-muted transition-all duration-200"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-destructive hover:bg-muted transition-all duration-150"
               title="Delete"
             >
               <Trash2 className="w-4 h-4" />

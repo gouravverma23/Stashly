@@ -122,10 +122,10 @@ const CreateBookmarkPage = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="glass-card p-6 space-y-5">
+        <form onSubmit={handleSubmit} className="glass-card p-6 space-y-4">
           {/* URL */}
           <div>
-            <label htmlFor="bookmark-url" className="block text-sm font-medium text-card-foreground mb-1.5">
+            <label htmlFor="bookmark-url" className="block text-xs font-semibold text-card-foreground mb-1.5">
               URL *
             </label>
             <div className="relative">
@@ -149,7 +149,7 @@ const CreateBookmarkPage = () => {
 
           {/* Title */}
           <div>
-            <label htmlFor="bookmark-title" className="block text-sm font-medium text-card-foreground mb-1.5">
+            <label htmlFor="bookmark-title" className="block text-xs font-semibold text-card-foreground mb-1.5">
               Title *
             </label>
             <div className="relative">
@@ -168,7 +168,7 @@ const CreateBookmarkPage = () => {
 
           {/* Description */}
           <div>
-            <label htmlFor="bookmark-desc" className="block text-sm font-medium text-card-foreground mb-1.5">
+            <label htmlFor="bookmark-desc" className="block text-xs font-semibold text-card-foreground mb-1.5">
               Description
             </label>
             <div className="relative">
@@ -187,7 +187,7 @@ const CreateBookmarkPage = () => {
           {/* Category + Collection */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="bookmark-category" className="block text-sm font-medium text-card-foreground mb-1.5">
+              <label htmlFor="bookmark-category" className="block text-xs font-semibold text-card-foreground mb-1.5">
                 Category
               </label>
               <div className="relative">
@@ -203,7 +203,7 @@ const CreateBookmarkPage = () => {
               </div>
             </div>
             <div>
-              <label htmlFor="bookmark-collection" className="block text-sm font-medium text-card-foreground mb-1.5">
+              <label htmlFor="bookmark-collection" className="block text-xs font-semibold text-card-foreground mb-1.5">
                 Collection
               </label>
               <select
@@ -222,7 +222,7 @@ const CreateBookmarkPage = () => {
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-medium text-card-foreground mb-1.5">
+            <label className="block text-xs font-semibold text-card-foreground mb-1.5">
               Tags
             </label>
             <TagInput
@@ -233,10 +233,10 @@ const CreateBookmarkPage = () => {
 
           {/* Submit */}
           <div className="flex items-center gap-3 pt-2">
-            <button type="submit" disabled={loading} className="btn-primary flex-1">
+            <button type="submit" disabled={loading} className="btn-primary flex-1 !h-10 text-sm font-semibold rounded-lg">
               {loading ? 'Saving...' : 'Save Bookmark'}
             </button>
-            <button type="button" onClick={() => navigate(-1)} className="btn-secondary">
+            <button type="button" onClick={() => navigate(-1)} className="btn-outline !h-10 text-sm font-semibold rounded-lg">
               Cancel
             </button>
           </div>

@@ -15,16 +15,16 @@ const Navbar = ({ onMenuClick, onSearch }) => {
   };
 
   return (
-    <header className="sticky top-0 z-20 bg-card/80 backdrop-blur-xl border-b border-border text-card-foreground">
-      <div className="flex items-center justify-between px-4 lg:px-8 h-16">
+    <header className="sticky top-0 z-20 bg-card/90 backdrop-blur-md border-b border-border text-card-foreground">
+      <div className="flex items-center justify-between px-4 lg:px-8 h-14">
         {/* Left: Menu + Search */}
-        <div className="flex items-center gap-4 flex-1">
+        <div className="flex items-center gap-3 flex-1">
           <button
             onClick={onMenuClick}
-            className="lg:hidden p-2 rounded-xl hover:bg-muted text-muted-foreground transition-colors"
+            className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center hover:bg-muted text-muted-foreground transition-colors"
             aria-label="Toggle menu"
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="w-4 h-4" />
           </button>
 
           <form onSubmit={handleSearch} className="relative flex-1 max-w-md">
@@ -35,7 +35,7 @@ const Navbar = ({ onMenuClick, onSearch }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search bookmarks..."
-              className="w-full pl-10 pr-4 py-2.5 bg-input border border-border rounded-xl text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-all duration-200"
+              className="w-full h-9 pl-9 pr-3 bg-input border border-border rounded-lg text-xs font-medium text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-all"
             />
           </form>
         </div>
@@ -45,10 +45,10 @@ const Navbar = ({ onMenuClick, onSearch }) => {
           <ThemeToggle />
           <button
             onClick={() => navigate('/bookmarks/new')}
-            className="btn-primary !px-4 !py-2 text-sm gap-1.5"
+            className="btn-primary !h-9 !px-3.5 text-xs font-semibold gap-1.5 rounded-lg"
             id="add-bookmark-btn"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Add Bookmark</span>
           </button>
         </div>

@@ -83,9 +83,9 @@ const CollectionsPage = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-foreground">Collections</h1>
-        <button onClick={openCreate} className="btn-primary text-sm">
-          <Plus className="w-4 h-4 mr-1.5" /> New Collection
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">Collections</h1>
+        <button onClick={openCreate} className="btn-primary !h-9 text-xs font-semibold gap-1.5 rounded-lg">
+          <Plus className="w-4 h-4" /> New Collection
         </button>
       </div>
 
@@ -159,7 +159,7 @@ const CollectionsPage = () => {
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={editingCol ? 'Edit Collection' : 'New Collection'}>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-card-foreground mb-1.5">Name *</label>
+            <label className="block text-xs font-semibold text-card-foreground mb-1.5">Name *</label>
             <input
               type="text"
               value={form.name}
@@ -170,7 +170,7 @@ const CollectionsPage = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-card-foreground mb-1.5">Description</label>
+            <label className="block text-xs font-semibold text-card-foreground mb-1.5">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
@@ -180,24 +180,24 @@ const CollectionsPage = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-card-foreground mb-1.5">Color</label>
+            <label className="block text-xs font-semibold text-card-foreground mb-1.5">Color</label>
             <div className="flex gap-2">
               {COLORS.map((c) => (
                 <button
                   key={c}
                   type="button"
                   onClick={() => setForm({ ...form, color: c })}
-                  className={`w-8 h-8 rounded-lg transition-transform ${form.color === c ? 'scale-110 ring-2 ring-offset-2 ring-ring' : 'hover:scale-105'}`}
+                  className={`w-7 h-7 rounded-md transition-transform ${form.color === c ? 'scale-110 ring-2 ring-offset-2 ring-ring' : 'hover:scale-105'}`}
                   style={{ backgroundColor: c }}
                 />
               ))}
             </div>
           </div>
           <div className="flex gap-3 pt-2">
-            <button type="submit" className="btn-primary flex-1">
+            <button type="submit" className="btn-primary flex-1 !h-10 text-sm font-semibold rounded-lg">
               {editingCol ? 'Update' : 'Create'} Collection
             </button>
-            <button type="button" onClick={() => setShowModal(false)} className="btn-secondary">Cancel</button>
+            <button type="button" onClick={() => setShowModal(false)} className="btn-outline !h-10 text-sm font-semibold rounded-lg">Cancel</button>
           </div>
         </form>
       </Modal>

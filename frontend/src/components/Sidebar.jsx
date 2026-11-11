@@ -35,33 +35,33 @@ const Sidebar = ({ isOpen, onClose, collapsed, onToggleCollapse }) => {
   const sidebarContent = (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-between'} px-4 py-6 border-b border-sidebar-border`}>
+      <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-between'} px-4 py-4 border-b border-sidebar-border`}>
         {!collapsed && (
-          <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center shadow-md shadow-primary-500/20">
-              <Bookmark className="w-5 h-5 text-white" />
+          <Link to="/dashboard" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center shadow-sm">
+              <Bookmark className="w-4 h-4 text-white" />
             </div>
-            <span className="text-xl font-bold gradient-text">Stashly</span>
+            <span className="text-lg font-bold tracking-tight gradient-text">Stashly</span>
           </Link>
         )}
         {collapsed && (
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center shadow-md shadow-primary-500/20">
-            <Bookmark className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center shadow-sm">
+            <Bookmark className="w-4 h-4 text-white" />
           </div>
         )}
         {/* Collapse toggle (desktop only) */}
         <button
           onClick={onToggleCollapse}
-          className="hidden lg:flex p-1.5 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-muted-foreground transition-colors"
+          className="hidden lg:flex w-7 h-7 rounded-md items-center justify-center hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-muted-foreground transition-colors"
         >
           <ChevronLeft className={`w-4 h-4 transition-transform ${collapsed ? 'rotate-180' : ''}`} />
         </button>
         {/* Close (mobile only) */}
         <button
           onClick={onClose}
-          className="lg:hidden p-1.5 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-muted-foreground"
+          className="lg:hidden w-7 h-7 rounded-md flex items-center justify-center hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-muted-foreground"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
       </div>
 

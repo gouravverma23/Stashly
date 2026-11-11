@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Merriweather:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -146,7 +146,7 @@
 }
 
 @layer base {
-  * {
+  *, ::before, ::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -154,11 +154,27 @@
   }
 
   body {
-    @apply font-sans antialiased;
+    font-family: var(--font-sans);
+    letter-spacing: var(--letter-spacing);
     background-color: var(--background);
     color: var(--foreground);
-    letter-spacing: var(--letter-spacing);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
   }
 
   html {
@@ -186,64 +202,250 @@
 }
 
 @layer components {
-  /* Card */
+  /* Box / Card */
   .glass-card {
-    @apply bg-card text-card-foreground rounded-2xl border border-border;
-    box-shadow: var(--shadow-offset-x) var(--shadow-offset-y) var(--shadow-blur) var(--shadow-spread) rgba(0, 0, 0, var(--shadow-opacity));
-    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px); /* ~12px */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, var(--shadow-opacity)), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
   /* Primary Button */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-2.5 bg-primary text-primary-foreground font-medium rounded-xl
-    hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
-    dark:focus:ring-offset-dark-900 transition-all duration-200 shadow-md shadow-primary-500/20 hover:shadow-lg hover:shadow-primary-500/30
-    active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem; /* 40px */
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: var(--radius); /* 8px */
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-primary:hover {
+    background-color: #cc4f27;
+  }
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
   }
 
   /* Secondary Button */
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-2.5 bg-secondary text-secondary-foreground font-medium rounded-xl
-    hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary-500/50 focus:ring-offset-2
-    dark:focus:ring-offset-dark-900 transition-all duration-200 active:scale-[0.98];
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem; /* 40px */
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: var(--radius); /* 8px */
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-secondary:hover {
+    opacity: 0.92;
+  }
+  .btn-secondary:active {
+    transform: scale(0.98);
+  }
+  .btn-secondary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--secondary);
+  }
+
+  /* Outline / Subtle Button (like GitHub/Google or secondary action) */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem; /* 40px */
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: var(--radius); /* 8px */
+    background-color: var(--input);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    transition: all 0.15s ease;
+    cursor: pointer;
+  }
+  .btn-outline:hover {
+    background-color: var(--muted);
+  }
+  .btn-outline:active {
+    transform: scale(0.98);
   }
 
   /* Danger Button */
   .btn-danger {
-    @apply inline-flex items-center justify-center px-6 py-2.5 bg-destructive text-destructive-foreground font-medium rounded-xl
-    hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:ring-offset-2
-    dark:focus:ring-offset-dark-900 transition-all duration-200 shadow-md shadow-rose-500/20 active:scale-[0.98];
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    background-color: var(--destructive);
+    color: var(--destructive-foreground);
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-danger:hover {
+    opacity: 0.92;
+  }
+  .btn-danger:active {
+    transform: scale(0.98);
   }
 
   /* Ghost Button */
   .btn-ghost {
-    @apply inline-flex items-center justify-center px-4 py-2 text-muted-foreground hover:text-foreground font-medium rounded-xl
-    hover:bg-muted focus:outline-none transition-all duration-200 active:scale-[0.98];
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding: 0 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    color: var(--muted-foreground);
+    background-color: transparent;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-ghost:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+  .btn-ghost:active {
+    transform: scale(0.98);
   }
 
   /* Input styles */
   .input-field {
-    @apply w-full px-4 py-3 bg-input border border-border rounded-xl
-    text-foreground placeholder:text-muted-foreground
-    focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary
-    transition-all duration-200;
+    display: block;
+    width: 100%;
+    height: 2.5rem; /* 40px */
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--foreground);
+    background-color: var(--input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: all 0.15s ease;
+  }
+  textarea.input-field {
+    height: auto;
+    min-height: 5.5rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    line-height: 1.5;
+  }
+  .input-field::placeholder {
+    color: var(--muted-foreground);
+    opacity: 0.8;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 2px rgba(224, 93, 56, 0.22);
+  }
+
+  /* Select styling matching input-field */
+  select.input-field {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem 1rem;
+    padding-right: 2.25rem;
+  }
+  .dark select.input-field {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23808080'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  }
+
+  /* Button size variants */
+  .btn-sm {
+    height: 2.25rem !important; /* 36px */
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    font-size: 0.8125rem !important; /* 13px */
+  }
+
+  .btn-lg {
+    height: 2.75rem !important; /* 44px */
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    font-size: 0.9375rem !important;
   }
 
   /* Sidebar nav link */
   .nav-link {
-    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-muted-foreground font-medium
-    hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
-    transition-all duration-200;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 2.5rem; /* 40px */
+    padding: 0 0.875rem;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    transition: all 0.15s ease;
   }
-
+  .nav-link:hover {
+    background-color: var(--sidebar-accent);
+    color: var(--sidebar-accent-foreground);
+  }
   .nav-link.active {
-    @apply bg-primary text-primary-foreground shadow-md shadow-primary-500/25;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   /* Tag chip */
   .tag-chip {
-    @apply inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full
-    bg-accent text-accent-foreground;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    height: 1.5rem;
+    padding: 0 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background-color: var(--accent);
+    color: var(--accent-foreground);
   }
 
   /* Gradient text */
@@ -274,6 +476,9 @@
 
   /* Skeleton loading shimmer animation */
   .skeleton-pulse {
-    @apply bg-muted border border-border animate-pulse;
+    background-color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }

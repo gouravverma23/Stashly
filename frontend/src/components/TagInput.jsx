@@ -26,7 +26,7 @@ const TagInput = ({ tags = [], onChange, placeholder = 'Add a tag and press Ente
   };
 
   return (
-    <div className="input-field !p-2 flex flex-wrap gap-2 min-h-[48px] items-center">
+    <div className="input-field !h-auto min-h-[40px] !py-1 !px-2 flex flex-wrap gap-1.5 items-center">
       {tags.map((tag) => (
         <span key={tag} className="tag-chip group">
           {tag}
