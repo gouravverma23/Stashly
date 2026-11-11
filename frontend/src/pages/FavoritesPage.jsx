@@ -6,13 +6,14 @@ import { useBookmarks } from '../context/BookmarkContext';
 import BookmarkCard from '../components/BookmarkCard';
 import ConfirmDialog from '../components/ConfirmDialog';
 import EmptyState from '../components/EmptyState';
-import LoadingSpinner from '../components/LoadingSpinner';
+import BookmarkCardSkeleton from '../components/skeletons/BookmarkCardSkeleton';
+import ServerWakeupNotice from '../components/ServerWakeupNotice';
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState(null);
-  const { deleteBookmark, toggleFavorite } = useBookmarks();
+  const { deleteBookmark } = useBookmarks();
 
   const fetchFavorites = async () => {
     try {
@@ -37,13 +38,20 @@ const FavoritesPage = () => {
     }
   };
 
-  if (loading) return <LoadingSpinner />;
-
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-dark-800 dark:text-white">Favorites</h1>
+      <h1 className="text-2xl font-bold text-foreground">Favorites</h1>
 
-      {favorites.length === 0 ? (
+      {loading ? (
+        <>
+          <ServerWakeupNotice />
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <BookmarkCardSkeleton key={i} />
+            ))}
+          </div>
+        </>
+      ) : favorites.length === 0 ? (
         <EmptyState
           icon={Heart}
           title="No favorites yet"

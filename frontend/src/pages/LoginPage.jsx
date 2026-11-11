@@ -38,17 +38,17 @@ const LoginPage = () => {
     >
       <div className="glass-card p-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-dark-800 dark:text-white mb-2">Welcome Back</h1>
-          <p className="text-dark-400 dark:text-dark-500">Sign in to your Stashly account</p>
+          <h1 className="text-2xl font-bold text-card-foreground mb-2">Welcome Back</h1>
+          <p className="text-muted-foreground">Sign in to your Stashly account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label htmlFor="login-email" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="login-email" className="block text-sm font-medium text-card-foreground mb-1.5">
               Email
             </label>
             <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="login-email"
                 type="email"
@@ -62,11 +62,11 @@ const LoginPage = () => {
           </div>
 
           <div>
-            <label htmlFor="login-password" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="login-password" className="block text-sm font-medium text-card-foreground mb-1.5">
               Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="login-password"
                 type={showPassword ? 'text' : 'password'}
@@ -79,7 +79,7 @@ const LoginPage = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-dark-400 hover:text-dark-600 transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -108,9 +108,9 @@ const LoginPage = () => {
           </button>
         </form>
 
-        <p className="text-center text-sm text-dark-400 dark:text-dark-500 mt-6">
+        <p className="text-center text-sm text-muted-foreground mt-6">
           Don't have an account?{' '}
-          <Link to="/register" className="text-primary-500 hover:text-primary-600 font-medium">
+          <Link to="/register" className="text-primary hover:underline font-medium">
             Create one
           </Link>
         </p>

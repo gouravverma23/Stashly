@@ -45,17 +45,17 @@ const RegisterPage = () => {
     >
       <div className="glass-card p-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-dark-800 dark:text-white mb-2">Create Account</h1>
-          <p className="text-dark-400 dark:text-dark-500">Join Stashly and start saving links</p>
+          <h1 className="text-2xl font-bold text-card-foreground mb-2">Create Account</h1>
+          <p className="text-muted-foreground">Join Stashly and start saving links</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="register-name" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="register-name" className="block text-sm font-medium text-card-foreground mb-1.5">
               Full Name
             </label>
             <div className="relative">
-              <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="register-name"
                 type="text"
@@ -69,11 +69,11 @@ const RegisterPage = () => {
           </div>
 
           <div>
-            <label htmlFor="register-email" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="register-email" className="block text-sm font-medium text-card-foreground mb-1.5">
               Email
             </label>
             <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="register-email"
                 type="email"
@@ -87,11 +87,11 @@ const RegisterPage = () => {
           </div>
 
           <div>
-            <label htmlFor="register-password" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="register-password" className="block text-sm font-medium text-card-foreground mb-1.5">
               Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="register-password"
                 type={showPassword ? 'text' : 'password'}
@@ -105,7 +105,7 @@ const RegisterPage = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-dark-400 hover:text-dark-600 transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -113,11 +113,11 @@ const RegisterPage = () => {
           </div>
 
           <div>
-            <label htmlFor="register-confirm" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="register-confirm" className="block text-sm font-medium text-card-foreground mb-1.5">
               Confirm Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="register-confirm"
                 type="password"
@@ -152,9 +152,9 @@ const RegisterPage = () => {
           </button>
         </form>
 
-        <p className="text-center text-sm text-dark-400 dark:text-dark-500 mt-6">
+        <p className="text-center text-sm text-muted-foreground mt-6">
           Already have an account?{' '}
-          <Link to="/login" className="text-primary-500 hover:text-primary-600 font-medium">
+          <Link to="/login" className="text-primary hover:underline font-medium">
             Sign in
           </Link>
         </p>

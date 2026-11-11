@@ -45,7 +45,7 @@ const TagInput = ({ tags = [], onChange, placeholder = 'Add a tag and press Ente
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={tags.length === 0 ? placeholder : ''}
-        className="flex-1 min-w-[120px] bg-transparent border-none outline-none text-sm text-dark-700 dark:text-dark-200 placeholder-dark-400"
+        className="flex-1 min-w-[120px] bg-transparent border-none outline-none text-sm text-foreground placeholder:text-muted-foreground"
       />
     </div>
   );

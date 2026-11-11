@@ -5,7 +5,7 @@ const LoadingSpinner = ({ fullScreen = false, size = 'md' }) => {
 
   const spinner = (
     <motion.div
-      className={`${sizes[size]} border-2 border-primary-200 dark:border-dark-600 border-t-primary-500 rounded-full`}
+      className={`${sizes[size]} border-2 border-primary-500/20 border-t-primary rounded-full`}
       animate={{ rotate: 360 }}
       transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
     />
@@ -13,10 +13,10 @@ const LoadingSpinner = ({ fullScreen = false, size = 'md' }) => {
 
   if (fullScreen) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-dark-50 dark:bg-dark-950">
+      <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
         <div className="flex flex-col items-center gap-4">
           {spinner}
-          <p className="text-dark-400 dark:text-dark-500 text-sm animate-pulse">Loading...</p>
+          <p className="text-muted-foreground text-sm animate-pulse">Loading...</p>
         </div>
       </div>
     );

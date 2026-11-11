@@ -97,7 +97,7 @@ const CreateBookmarkPage = () => {
           <ArrowLeft className="w-4 h-4 mr-1.5" /> Back
         </button>
 
-        <h1 className="text-2xl font-bold text-dark-800 dark:text-white mb-6">
+        <h1 className="text-2xl font-bold text-foreground mb-6">
           Add New Bookmark
         </h1>
 
@@ -114,10 +114,10 @@ const CreateBookmarkPage = () => {
                 <img src={form.favicon} alt="" className="w-6 h-6 rounded" onError={(e) => { e.target.style.display = 'none'; }} />
               )}
               <div className="min-w-0">
-                <p className="text-sm font-medium text-dark-700 dark:text-dark-200 truncate">{form.title || 'Website Title'}</p>
-                <p className="text-xs text-dark-400 truncate">{form.url}</p>
+                <p className="text-sm font-medium text-card-foreground truncate">{form.title || 'Website Title'}</p>
+                <p className="text-xs text-muted-foreground truncate">{form.url}</p>
               </div>
-              {fetchingPreview && <Loader2 className="w-4 h-4 text-primary-500 animate-spin ml-auto" />}
+              {fetchingPreview && <Loader2 className="w-4 h-4 text-primary animate-spin ml-auto" />}
             </div>
           </div>
         )}
@@ -125,11 +125,11 @@ const CreateBookmarkPage = () => {
         <form onSubmit={handleSubmit} className="glass-card p-6 space-y-5">
           {/* URL */}
           <div>
-            <label htmlFor="bookmark-url" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="bookmark-url" className="block text-sm font-medium text-card-foreground mb-1.5">
               URL *
             </label>
             <div className="relative">
-              <Link2 className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Link2 className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="bookmark-url"
                 type="url"
@@ -140,7 +140,7 @@ const CreateBookmarkPage = () => {
                 required
               />
               {fetchingPreview && (
-                <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-xs text-primary-500">
+                <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-xs text-primary">
                   <Sparkles className="w-3.5 h-3.5 animate-pulse" /> Fetching preview...
                 </div>
               )}
@@ -149,11 +149,11 @@ const CreateBookmarkPage = () => {
 
           {/* Title */}
           <div>
-            <label htmlFor="bookmark-title" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="bookmark-title" className="block text-sm font-medium text-card-foreground mb-1.5">
               Title *
             </label>
             <div className="relative">
-              <Type className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Type className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 id="bookmark-title"
                 type="text"
@@ -168,11 +168,11 @@ const CreateBookmarkPage = () => {
 
           {/* Description */}
           <div>
-            <label htmlFor="bookmark-desc" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label htmlFor="bookmark-desc" className="block text-sm font-medium text-card-foreground mb-1.5">
               Description
             </label>
             <div className="relative">
-              <FileText className="absolute left-3.5 top-3 w-4 h-4 text-dark-400" />
+              <FileText className="absolute left-3.5 top-3 w-4 h-4 text-muted-foreground" />
               <textarea
                 id="bookmark-desc"
                 value={form.description}
@@ -187,11 +187,11 @@ const CreateBookmarkPage = () => {
           {/* Category + Collection */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="bookmark-category" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+              <label htmlFor="bookmark-category" className="block text-sm font-medium text-card-foreground mb-1.5">
                 Category
               </label>
               <div className="relative">
-                <FolderOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+                <FolderOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   id="bookmark-category"
                   type="text"
@@ -203,7 +203,7 @@ const CreateBookmarkPage = () => {
               </div>
             </div>
             <div>
-              <label htmlFor="bookmark-collection" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+              <label htmlFor="bookmark-collection" className="block text-sm font-medium text-card-foreground mb-1.5">
                 Collection
               </label>
               <select
@@ -222,7 +222,7 @@ const CreateBookmarkPage = () => {
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">
+            <label className="block text-sm font-medium text-card-foreground mb-1.5">
               Tags
             </label>
             <TagInput

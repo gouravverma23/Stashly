@@ -40,7 +40,7 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
           />
         </div>
       ) : (
-        <div className="h-2 bg-gradient-to-r from-primary-500 to-accent-500" />
+        <div className="h-2 bg-gradient-to-r from-primary to-chart-2" />
       )}
 
       <div className="p-5">
@@ -54,13 +54,13 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
           />
           <div className="flex-1 min-w-0">
             <h3
-              className="font-semibold text-dark-800 dark:text-dark-100 truncate cursor-pointer hover:text-primary-500 transition-colors"
+              className="font-semibold text-card-foreground truncate cursor-pointer hover:text-primary transition-colors"
               onClick={handleClick}
               title={bookmark.title}
             >
               {bookmark.title}
             </h3>
-            <p className="text-xs text-dark-400 dark:text-dark-500 truncate mt-0.5">
+            <p className="text-xs text-muted-foreground truncate mt-0.5">
               {bookmark.url}
             </p>
           </div>
@@ -68,7 +68,7 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
 
         {/* Description */}
         {bookmark.description && (
-          <p className="text-sm text-dark-500 dark:text-dark-400 line-clamp-2 mb-3">
+          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
             {bookmark.description}
           </p>
         )}
@@ -80,33 +80,33 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
               <span key={tag} className="tag-chip text-[11px]">{tag}</span>
             ))}
             {bookmark.tags.length > 3 && (
-              <span className="text-[11px] text-dark-400">+{bookmark.tags.length - 3}</span>
+              <span className="text-[11px] text-muted-foreground">+{bookmark.tags.length - 3}</span>
             )}
           </div>
         )}
 
         {/* Category & Stats */}
         <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-dark-100 dark:bg-dark-700 text-dark-500 dark:text-dark-400">
+          <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-muted border border-border text-muted-foreground">
             {bookmark.category}
           </span>
           {bookmark.clickCount > 0 && (
-            <span className="flex items-center gap-1 text-xs text-dark-400">
-              <BarChart3 className="w-3 h-3" />
+            <span className="flex items-center gap-1 text-xs text-muted-foreground">
+              <BarChart3 className="w-3 h-3 text-primary" />
               {bookmark.clickCount} clicks
             </span>
           )}
         </div>
 
         {/* Actions */}
-        <div className="flex items-center justify-between pt-3 border-t border-dark-100 dark:border-dark-700">
+        <div className="flex items-center justify-between pt-3 border-t border-border">
           <div className="flex items-center gap-1">
             <button
               onClick={() => toggleFavorite(bookmark._id)}
               className={`p-2 rounded-lg transition-all duration-200 ${
                 bookmark.isFavorite
-                  ? 'text-rose-500 bg-rose-50 dark:bg-rose-900/20'
-                  : 'text-dark-400 hover:text-rose-500 hover:bg-dark-100 dark:hover:bg-dark-700'
+                  ? 'text-destructive bg-destructive/10'
+                  : 'text-muted-foreground hover:text-destructive hover:bg-muted'
               }`}
               title={bookmark.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
             >
@@ -114,7 +114,7 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
             </button>
             <button
               onClick={handleClick}
-              className="p-2 rounded-lg text-dark-400 hover:text-primary-500 hover:bg-dark-100 dark:hover:bg-dark-700 transition-all duration-200"
+              className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200"
               title="Open link"
             >
               <ExternalLink className="w-4 h-4" />
@@ -123,14 +123,14 @@ const BookmarkCard = ({ bookmark, onDelete, index = 0 }) => {
           <div className="flex items-center gap-1">
             <button
               onClick={() => navigate(`/bookmarks/edit/${bookmark._id}`)}
-              className="p-2 rounded-lg text-dark-400 hover:text-primary-500 hover:bg-dark-100 dark:hover:bg-dark-700 transition-all duration-200"
+              className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-muted transition-all duration-200"
               title="Edit"
             >
               <Edit3 className="w-4 h-4" />
             </button>
             <button
               onClick={() => onDelete(bookmark._id)}
-              className="p-2 rounded-lg text-dark-400 hover:text-rose-500 hover:bg-dark-100 dark:hover:bg-dark-700 transition-all duration-200"
+              className="p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-muted transition-all duration-200"
               title="Delete"
             >
               <Trash2 className="w-4 h-4" />

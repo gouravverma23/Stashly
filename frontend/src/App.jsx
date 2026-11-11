@@ -76,18 +76,20 @@ const App = () => {
             toastOptions={{
               duration: 3000,
               style: {
-                background: 'var(--toast-bg, #fff)',
-                color: 'var(--toast-color, #334155)',
-                borderRadius: '12px',
+                background: 'var(--card)',
+                color: 'var(--card-foreground)',
+                border: '1px solid var(--border)',
+                borderRadius: 'var(--radius)',
                 padding: '12px 16px',
                 fontSize: '14px',
-                boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
+                fontFamily: 'var(--font-sans)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
               },
               success: {
-                iconTheme: { primary: '#10b981', secondary: '#fff' },
+                iconTheme: { primary: '#df6035', secondary: '#fff' },
               },
               error: {
-                iconTheme: { primary: '#f43f5e', secondary: '#fff' },
+                iconTheme: { primary: '#ef4444', secondary: '#fff' },
               },
             }}
           />

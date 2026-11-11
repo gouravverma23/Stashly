@@ -82,7 +82,7 @@ const EditBookmarkPage = () => {
           <ArrowLeft className="w-4 h-4 mr-1.5" /> Back
         </button>
 
-        <h1 className="text-2xl font-bold text-dark-800 dark:text-white mb-6">Edit Bookmark</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-6">Edit Bookmark</h1>
 
         {/* Preview */}
         {form.ogImage && (
@@ -95,39 +95,39 @@ const EditBookmarkPage = () => {
 
         <form onSubmit={handleSubmit} className="glass-card p-6 space-y-5">
           <div>
-            <label htmlFor="edit-url" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">URL *</label>
+            <label htmlFor="edit-url" className="block text-sm font-medium text-card-foreground mb-1.5">URL *</label>
             <div className="relative">
-              <Link2 className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Link2 className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input id="edit-url" type="url" value={form.url} onChange={(e) => setForm({ ...form, url: e.target.value })} className="input-field !pl-10" required />
             </div>
           </div>
 
           <div>
-            <label htmlFor="edit-title" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">Title *</label>
+            <label htmlFor="edit-title" className="block text-sm font-medium text-card-foreground mb-1.5">Title *</label>
             <div className="relative">
-              <Type className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+              <Type className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input id="edit-title" type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="input-field !pl-10" required />
             </div>
           </div>
 
           <div>
-            <label htmlFor="edit-desc" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">Description</label>
+            <label htmlFor="edit-desc" className="block text-sm font-medium text-card-foreground mb-1.5">Description</label>
             <div className="relative">
-              <FileText className="absolute left-3.5 top-3 w-4 h-4 text-dark-400" />
+              <FileText className="absolute left-3.5 top-3 w-4 h-4 text-muted-foreground" />
               <textarea id="edit-desc" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} className="input-field !pl-10 resize-none" />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="edit-category" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">Category</label>
+              <label htmlFor="edit-category" className="block text-sm font-medium text-card-foreground mb-1.5">Category</label>
               <div className="relative">
-                <FolderOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+                <FolderOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input id="edit-category" type="text" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="input-field !pl-10" />
               </div>
             </div>
             <div>
-              <label htmlFor="edit-collection" className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">Collection</label>
+              <label htmlFor="edit-collection" className="block text-sm font-medium text-card-foreground mb-1.5">Collection</label>
               <select id="edit-collection" value={form.collectionId} onChange={(e) => setForm({ ...form, collectionId: e.target.value })} className="input-field">
                 <option value="">None</option>
                 {collections.map((col) => (
@@ -138,7 +138,7 @@ const EditBookmarkPage = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">Tags</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1.5">Tags</label>
             <TagInput tags={form.tags} onChange={(tags) => setForm({ ...form, tags })} />
           </div>
 

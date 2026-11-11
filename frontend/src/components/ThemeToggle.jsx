@@ -9,7 +9,7 @@ const ThemeToggle = () => {
     <button
       id="theme-toggle"
       onClick={toggleTheme}
-      className="relative p-2 rounded-xl bg-dark-100 dark:bg-dark-800 hover:bg-dark-200 dark:hover:bg-dark-700 transition-colors duration-200"
+      className="relative p-2 rounded-xl bg-muted border border-border hover:bg-border/50 transition-colors duration-200"
       aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <motion.div
@@ -18,9 +18,9 @@ const ThemeToggle = () => {
         transition={{ duration: 0.4, ease: 'easeInOut' }}
       >
         {darkMode ? (
-          <Sun className="w-5 h-5 text-amber-400" />
+          <Sun className="w-5 h-5 text-chart-4" />
         ) : (
-          <Moon className="w-5 h-5 text-primary-500" />
+          <Moon className="w-5 h-5 text-primary" />
         )}
       </motion.div>
     </button>

@@ -35,31 +35,31 @@ const Sidebar = ({ isOpen, onClose, collapsed, onToggleCollapse }) => {
   const sidebarContent = (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-between'} px-4 py-6 border-b border-dark-100 dark:border-dark-700`}>
+      <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-between'} px-4 py-6 border-b border-sidebar-border`}>
         {!collapsed && (
           <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center shadow-md shadow-primary-500/20">
               <Bookmark className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold gradient-text">Stashly</span>
           </Link>
         )}
         {collapsed && (
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-chart-2 flex items-center justify-center shadow-md shadow-primary-500/20">
             <Bookmark className="w-5 h-5 text-white" />
           </div>
         )}
         {/* Collapse toggle (desktop only) */}
         <button
           onClick={onToggleCollapse}
-          className="hidden lg:flex p-1.5 rounded-lg hover:bg-dark-100 dark:hover:bg-dark-700 text-dark-400 transition-colors"
+          className="hidden lg:flex p-1.5 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-muted-foreground transition-colors"
         >
           <ChevronLeft className={`w-4 h-4 transition-transform ${collapsed ? 'rotate-180' : ''}`} />
         </button>
         {/* Close (mobile only) */}
         <button
           onClick={onClose}
-          className="lg:hidden p-1.5 rounded-lg hover:bg-dark-100 dark:hover:bg-dark-700 text-dark-400"
+          className="lg:hidden p-1.5 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-muted-foreground"
         >
           <X className="w-5 h-5" />
         </button>
@@ -88,16 +88,16 @@ const Sidebar = ({ isOpen, onClose, collapsed, onToggleCollapse }) => {
       </nav>
 
       {/* User / Logout */}
-      <div className="px-3 py-4 border-t border-dark-100 dark:border-dark-700">
+      <div className="px-3 py-4 border-t border-sidebar-border">
         {!collapsed && user && (
           <div className="px-4 py-2 mb-2">
-            <p className="text-sm font-medium text-dark-700 dark:text-dark-200 truncate">{user.name}</p>
-            <p className="text-xs text-dark-400 dark:text-dark-500 truncate">{user.email}</p>
+            <p className="text-sm font-medium text-sidebar-foreground truncate">{user.name}</p>
+            <p className="text-xs text-muted-foreground truncate">{user.email}</p>
           </div>
         )}
         <button
           onClick={handleLogout}
-          className={`nav-link w-full hover:!bg-rose-50 dark:hover:!bg-rose-900/20 hover:!text-rose-500 ${collapsed ? '!px-3 justify-center' : ''}`}
+          className={`nav-link w-full hover:!bg-destructive/10 hover:!text-destructive ${collapsed ? '!px-3 justify-center' : ''}`}
           title={collapsed ? 'Logout' : ''}
         >
           <LogOut className="w-5 h-5 flex-shrink-0" />
@@ -130,7 +130,7 @@ const Sidebar = ({ isOpen, onClose, collapsed, onToggleCollapse }) => {
             animate={{ x: 0 }}
             exit={{ x: -280 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 left-0 bottom-0 w-[280px] bg-white dark:bg-dark-900 border-r border-dark-100 dark:border-dark-800 z-50 lg:hidden"
+            className="fixed top-0 left-0 bottom-0 w-[280px] bg-sidebar border-r border-sidebar-border z-50 lg:hidden"
           >
             {sidebarContent}
           </motion.aside>
@@ -139,7 +139,7 @@ const Sidebar = ({ isOpen, onClose, collapsed, onToggleCollapse }) => {
 
       {/* Desktop Sidebar */}
       <aside
-        className={`hidden lg:flex flex-col fixed top-0 left-0 bottom-0 bg-white dark:bg-dark-900 border-r border-dark-100 dark:border-dark-800 z-30 transition-all duration-300 ${
+        className={`hidden lg:flex flex-col fixed top-0 left-0 bottom-0 bg-sidebar border-r border-sidebar-border z-30 transition-all duration-300 ${
           collapsed ? 'w-[72px]' : 'w-[260px]'
         }`}
       >

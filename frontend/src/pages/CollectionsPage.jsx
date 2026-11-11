@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
 import ConfirmDialog from '../components/ConfirmDialog';
 import EmptyState from '../components/EmptyState';
-import LoadingSpinner from '../components/LoadingSpinner';
+import CollectionCardSkeleton from '../components/skeletons/CollectionCardSkeleton';
+import ServerWakeupNotice from '../components/ServerWakeupNotice';
 import toast from 'react-hot-toast';
 
-const COLORS = ['#6366f1', '#8b5cf6', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#14b8a6'];
+const COLORS = ['#df6035', '#e16f41', '#2f4b79', '#7399bf', '#e2b146', '#d54450', '#3c4c76', '#10b981'];
 
 const CollectionsPage = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const CollectionsPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [editingCol, setEditingCol] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
-  const [form, setForm] = useState({ name: '', description: '', color: '#6366f1' });
+  const [form, setForm] = useState({ name: '', description: '', color: '#df6035' });
 
   const fetchCollections = async () => {
     try {
@@ -37,13 +38,13 @@ const CollectionsPage = () => {
 
   const openCreate = () => {
     setEditingCol(null);
-    setForm({ name: '', description: '', color: '#6366f1' });
+    setForm({ name: '', description: '', color: '#df6035' });
     setShowModal(true);
   };
 
   const openEdit = (col) => {
     setEditingCol(col);
-    setForm({ name: col.name, description: col.description || '', color: col.color || '#6366f1' });
+    setForm({ name: col.name, description: col.description || '', color: col.color || '#df6035' });
     setShowModal(true);
   };
 
@@ -79,18 +80,25 @@ const CollectionsPage = () => {
     setDeleteId(null);
   };
 
-  if (loading) return <LoadingSpinner />;
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-dark-800 dark:text-white">Collections</h1>
+        <h1 className="text-2xl font-bold text-foreground">Collections</h1>
         <button onClick={openCreate} className="btn-primary text-sm">
           <Plus className="w-4 h-4 mr-1.5" /> New Collection
         </button>
       </div>
 
-      {collections.length === 0 ? (
+      {loading ? (
+        <>
+          <ServerWakeupNotice />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <CollectionCardSkeleton key={i} />
+            ))}
+          </div>
+        </>
+      ) : collections.length === 0 ? (
         <EmptyState
           icon={FolderOpen}
           title="No collections yet"
@@ -109,7 +117,7 @@ const CollectionsPage = () => {
                 className="glass-card overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group"
                 onClick={() => navigate(`/bookmarks?collectionId=${col._id}`)}
               >
-                <div className="h-2" style={{ backgroundColor: col.color || '#6366f1' }} />
+                <div className="h-2" style={{ backgroundColor: col.color || '#df6035' }} />
                 <div className="p-5">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
@@ -120,25 +128,25 @@ const CollectionsPage = () => {
                         <FolderOpen className="w-5 h-5" style={{ color: col.color }} />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-dark-800 dark:text-dark-100 group-hover:text-primary-500 transition-colors">
+                        <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors">
                           {col.name}
                         </h3>
-                        <p className="text-xs text-dark-400 flex items-center gap-1 mt-0.5">
+                        <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
                           <Bookmark className="w-3 h-3" /> {col.bookmarkCount || 0} bookmarks
                         </p>
                       </div>
                     </div>
                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity" onClick={(e) => e.stopPropagation()}>
-                      <button onClick={() => openEdit(col)} className="p-1.5 rounded-lg hover:bg-dark-100 dark:hover:bg-dark-700 text-dark-400 hover:text-primary-500">
+                      <button onClick={() => openEdit(col)} className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-primary">
                         <Edit3 className="w-3.5 h-3.5" />
                       </button>
-                      <button onClick={() => setDeleteId(col._id)} className="p-1.5 rounded-lg hover:bg-dark-100 dark:hover:bg-dark-700 text-dark-400 hover:text-rose-500">
+                      <button onClick={() => setDeleteId(col._id)} className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-destructive">
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
                   {col.description && (
-                    <p className="text-sm text-dark-500 dark:text-dark-400 line-clamp-2">{col.description}</p>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{col.description}</p>
                   )}
                 </div>
               </motion.div>
@@ -151,7 +159,7 @@ const CollectionsPage = () => {
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={editingCol ? 'Edit Collection' : 'New Collection'}>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">Name *</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1.5">Name *</label>
             <input
               type="text"
               value={form.name}
@@ -162,7 +170,7 @@ const CollectionsPage = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">Description</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1.5">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
@@ -172,14 +180,14 @@ const CollectionsPage = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-dark-600 dark:text-dark-300 mb-1.5">Color</label>
+            <label className="block text-sm font-medium text-card-foreground mb-1.5">Color</label>
             <div className="flex gap-2">
               {COLORS.map((c) => (
                 <button
                   key={c}
                   type="button"
                   onClick={() => setForm({ ...form, color: c })}
-                  className={`w-8 h-8 rounded-lg transition-transform ${form.color === c ? 'scale-110 ring-2 ring-offset-2 ring-dark-300 dark:ring-offset-dark-800' : 'hover:scale-105'}`}
+                  className={`w-8 h-8 rounded-lg transition-transform ${form.color === c ? 'scale-110 ring-2 ring-offset-2 ring-ring' : 'hover:scale-105'}`}
                   style={{ backgroundColor: c }}
                 />
               ))}
