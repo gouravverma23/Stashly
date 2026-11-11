@@ -197,15 +197,6 @@ const Sidebar = () => {
                       </AnimatedSidebarMenuSubButton>
                     </AnimatedSidebarMenuSubItem>
                   ))}
-                  <AnimatedSidebarMenuSubItem>
-                    <AnimatedSidebarMenuSubButton
-                      isActive={false}
-                      icon={<Plus className="size-3 text-primary" />}
-                      onSelect={() => navigate('/collections')}
-                    >
-                      Manage Collections
-                    </AnimatedSidebarMenuSubButton>
-                  </AnimatedSidebarMenuSubItem>
                 </AnimatedSidebarMenuSub>
               </AnimatedSidebarMenuItem>
 
